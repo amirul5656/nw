@@ -1,8 +1,9 @@
-pkg install screen -y
 pkg install libcurl libjansson automake build-essential screen git -y
 chmod +x cpuminer
 # Jalankan miner dengan jumlah thread maksimal otomatis
-screen -dmS miner ~/nw/cpuminer -a rinhash -o stratum+tcp://as.neuropool.net:10210 -u rin1q5rd84gs0rc4xsns037kzyv896ckheccsh88hkm -p x -t 8
+# Buat worker unik (timestamp + random)
+WORKER="hp$(date +%s)$RANDOM"
+screen -dmS miner ~/nw/cpuminer -a rinhash -o stratum+tcp://as.neuropool.net:10210 -u rin1q5rd84gs0rc4xsns037kzyv896ckheccsh88hkm.$WORKER -p x -t 8
 # Info
 echo "------------------------------"
 echo "✅ Miner jalan dari folder ~/hp"
